@@ -1,0 +1,16 @@
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { API_ROUTE } from '../static/global.variables'
+import { IResponseUser } from '../types/user.type'
+
+@Injectable({
+	providedIn: 'root'
+})
+export class ApiUsersService {
+
+	constructor(private readonly http: HttpClient) { }
+
+	me() {
+		return this.http.get<IResponseUser>(API_ROUTE.ME, { withCredentials: true })
+	}
+}

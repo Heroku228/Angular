@@ -1,0 +1,19 @@
+<div class="profile-card">
+  <div>
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+      <input type="text" name="username" ngModel required />
+      <input type="email" name="email" ngModel required />
+      <input type="password" name="password" ngModel required />
+      <input type="file" (change)="onFileSelected($event)" required />
+      <button type="submit">Зарегистрироваться</button>
+    </form>
+  </div>
+
+  <div>
+    <form #authForm="ngForm" (ngSubmit)="login(authForm)">
+      <input type="text" name="username" ngModel required="" />
+      <input type="password" name="password" ngModel required="" />
+      <button type="submit">Авторизация</button>
+    </form>
+  </div>
+</div>
