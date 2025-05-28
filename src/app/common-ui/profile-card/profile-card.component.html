@@ -1,5 +1,24 @@
-<h1>
-  Profile card component
+<div *ngIf="error; else userList">
+  <p>{{ error }}</p>
+</div>
 
-  <app-avatar></app-avatar>
-</h1>
+<ng-template #userList>
+  <div *ngIf="users.length > 0; else noUsers"></div>
+
+  <p>Найдено пользователей: {{ users.length }}</p>
+
+  <div *ngFor="let user of users">
+    <h3>{{ user.username }}</h3>
+    <p>Email: {{ user.email }}</p>
+    <img
+      *ngIf="user.pathToUserIcon"
+      [src]="user.pathToUserIcon"
+      alt="user-avatar"
+      width="200"
+    />
+  </div>
+
+  <ng-template #noUsers>
+    <p>Нет пользоватлей для отображения</p>
+  </ng-template>
+</ng-template>

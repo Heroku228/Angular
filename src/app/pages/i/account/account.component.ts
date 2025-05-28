@@ -1,19 +1,24 @@
 import { CommonModule } from '@angular/common'
 import { Component, OnInit } from '@angular/core'
+import { Router, RouterModule } from '@angular/router'
 import { ApiUsersService } from '../../../api/api-users.service'
+import { WEB_ROUTE } from '../../../static/global.variables'
 import { IResponseUser } from '../../../types/user.type'
 
 @Component({
 	selector: 'app-account',
 	standalone: true,
-	imports: [CommonModule],
+	imports: [CommonModule, RouterModule],
 	templateUrl: './account.component.html',
 })
 export class AccountComponent implements OnInit {
 	user: IResponseUser | null = null
 	error: string | null = null
 
-	constructor(private readonly apiUsersService: ApiUsersService) { }
+	constructor(
+		private readonly apiUsersService: ApiUsersService,
+		private readonly router: Router
+	) { }
 
 	ngOnInit(): void {
 		this.apiUsersService.me().subscribe({
@@ -22,6 +27,15 @@ export class AccountComponent implements OnInit {
 				this.error = 'Ошибка при загрузке данных пользователя'
 				console.error(err)
 			}
+		})
+	}
+
+	logout(): void {
+		this.apiUsersService.logout().subscribe({
+			next: () => {
+				this.user = null
+				this.router.navigate([WEB_ROUTE.LOGIN])
+			},
 		})
 	}
 }
