@@ -21,16 +21,8 @@ export class ProfileCardComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.apiUsersService.getUsers().subscribe({
-			next: data => {
-				this.users = data
-				console.log(data)
-				console.log(this.users)
-				return this.users
-			},
-			error: err => {
-				this.error = USERS_ERRORS.USERS_LOAD_ERROS
-				console.error(err)
-			}
+			next: data => this.users = data,
+			error: () => this.error = USERS_ERRORS.USERS_LOAD_ERROS
 		})
 	}
 }

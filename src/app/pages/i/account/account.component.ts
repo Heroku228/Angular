@@ -23,7 +23,7 @@ export class AccountPageData implements OnInit {
 	ngOnInit(): void {
 		this.apiUsersService.me().subscribe({
 			next: data => this.user = data,
-			error: () => this.router.navigate([WEB_ROUTE.HOME])
+			error: () => this.router.navigate([WEB_ROUTE.LOGIN])
 		})
 	}
 
