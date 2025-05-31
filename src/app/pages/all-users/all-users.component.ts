@@ -3,13 +3,14 @@ import { HttpClientModule } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { ApiUsersService } from '../../api/api-users.service'
+import { USERS_ERRORS } from '../../static/errors/users.error'
 import { IResponseUser } from '../../types/user.type'
 
 @Component({
 	selector: 'app-profile-card',
 	standalone: true,
 	imports: [FormsModule, HttpClientModule, CommonModule],
-	templateUrl: './profile-card.component.html',
+	templateUrl: './all-users.component.html',
 })
 
 export class ProfileCardComponent implements OnInit {
@@ -27,7 +28,7 @@ export class ProfileCardComponent implements OnInit {
 				return this.users
 			},
 			error: err => {
-				this.error = 'Ошибка при загрузке данных пользователей'
+				this.error = USERS_ERRORS.USERS_LOAD_ERROS
 				console.error(err)
 			}
 		})

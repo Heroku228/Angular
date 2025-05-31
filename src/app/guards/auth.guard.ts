@@ -1,11 +1,28 @@
-// import { ActivatedRouteSnapshot, CanActivateFn } from '@angular/router'
-// import { ApiUsersService } from '../api/api-users.service'
-// import { inject } from '@angular/core'
+import { inject } from '@angular/core'
+import { Router } from '@angular/router'
+import { catchError, map, of } from 'rxjs'
+import { AuthService } from '../service/auth.service'
 
-// export const authGuard: CanActivateFn = (route, state) => {
-// 	apiUsersService: ApiUsersService
-// 	router: ActivatedRouteSnapshot
+/**
+ * Guard для проверки на авторизованность пользователя. Делает запрос на сервер
+ * @returns Возвращает булевое значение, если авторизован, то: True, а в ином случае False
+ */
+export const authGuard = () => {
+	const authService = inject(AuthService)
+	const router = inject(Router)
 
-
-// 	return inject(ApiUsersService).c
-// }
+	return authService.checkAuth()
+		.pipe(
+			map(isAuthenticated => {
+				if (!isAuthenticated) {
+					router.navigate(['/auth'])
+					return false
+				}
+				return true
+			}),
+			catchError(() => {
+				router.navigate(['/auth'])
+				return of(false)
+			})
+		)
+}

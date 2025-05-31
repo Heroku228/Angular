@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router'
-import { ProfileCardComponent } from './common-ui/profile-card/profile-card.component'
+import { ProfileCardComponent } from './pages/all-users/all-users.component'
 import { AuthComponent } from './pages/auth/auth.component'
-import { AccountComponent } from './pages/i/account/account.component'
+import { AccountPageData } from './pages/i/account/account.component'
 
 export const routes: Routes = [
 	{
@@ -14,6 +14,6 @@ export const routes: Routes = [
 	},
 	{
 		path: 'i',
-		component: AccountComponent
+		component: AccountPageData
 	}
 ]

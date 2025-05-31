@@ -11,7 +11,7 @@ import { IResponseUser } from '../../../types/user.type'
 	imports: [CommonModule, RouterModule],
 	templateUrl: './account.component.html',
 })
-export class AccountComponent implements OnInit {
+export class AccountPageData implements OnInit {
 	user: IResponseUser | null = null
 	error: string | null = null
 
@@ -23,10 +23,7 @@ export class AccountComponent implements OnInit {
 	ngOnInit(): void {
 		this.apiUsersService.me().subscribe({
 			next: data => this.user = data,
-			error: err => {
-				this.error = 'Ошибка при загрузке данных пользователя'
-				console.error(err)
-			}
+			error: () => this.router.navigate([WEB_ROUTE.HOME])
 		})
 	}
 
