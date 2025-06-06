@@ -12,7 +12,7 @@ export const API_ROUTE = {
 
 export const WEB_ROUTE = {
 	AUTH: 'auth',
-	ME: 'me',
+	ME: 'i',
 	ALL_USERS: '/users',
 	HOME: '/'
 }

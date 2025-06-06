@@ -14,6 +14,7 @@ type TAuthenticationStatus = {
 export class AuthService {
 	constructor(private readonly http: HttpClient) { }
 
+	// TODO -> Дополнительно сделать проверку на наличие АДМИН прав у пользователя
 	checkAuth(): Observable<boolean> {
 		return this.http.get<TAuthenticationStatus>(
 			API_ROUTE.CHECK_AUTH,

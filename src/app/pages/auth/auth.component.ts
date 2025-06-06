@@ -1,13 +1,15 @@
 import { HttpClientModule } from '@angular/common/http'
 import { Component } from '@angular/core'
 import { FormsModule, NgForm } from '@angular/forms'
+import { Router, RouterModule } from '@angular/router'
 import { ApiAuthService } from '../../api/api-auth.service'
+import { WEB_ROUTE } from '../../static/global.variables'
 import { TLoginPayload, TRegisterPayload } from '../../types/auth.type'
 
 @Component({
 	selector: 'app-auth',
 	standalone: true,
-	imports: [HttpClientModule, FormsModule],
+	imports: [HttpClientModule, FormsModule, RouterModule],
 	templateUrl: './auth.component.html',
 })
 
@@ -15,7 +17,10 @@ export class AuthComponent {
 
 	private selectedFile: File | null = null;
 
-	constructor(private readonly apiAuthService: ApiAuthService) { }
+	constructor(
+		private readonly apiAuthService: ApiAuthService,
+		private readonly router: Router
+	) { }
 
 	onFileSelected(event: Event): void {
 		const input = event.target as HTMLInputElement
@@ -38,7 +43,10 @@ export class AuthComponent {
 		}
 
 		this.apiAuthService.register(payload).subscribe({
-			next: res => console.log('Успешная регистрация', res),
+			next: res => {
+				this.router.navigate([WEB_ROUTE.ME])
+				console.log('Успешная авторизация', res)
+			},
 			error: err => console.error('Ошибка регистрации', err)
 		})
 	}
@@ -50,7 +58,10 @@ export class AuthComponent {
 		}
 
 		this.apiAuthService.login(payload).subscribe({
-			next: res => console.log('Успешная авторизация', res),
+			next: res => {
+				console.log('Успешная авторизация', res)
+				this.router.navigate([WEB_ROUTE.ME])
+			},
 			error: err => console.error('Ошибка авторизации', err)
 		})
 	}

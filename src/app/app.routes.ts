@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router'
 import { authGuard } from './guards/auth.guard'
+import { noAuthGuard } from './guards/noAuth.guard'
 import { ProfileCardComponent } from './pages/all-users/all-users.component'
 import { AuthComponent } from './pages/auth/auth.component'
 import { AccountPageData } from './pages/i/account/account.component'
@@ -12,7 +13,8 @@ export const routes: Routes = [
 	},
 	{
 		path: 'auth',
-		component: AuthComponent
+		component: AuthComponent,
+		canActivate: [noAuthGuard]
 	},
 	{
 		path: 'i',
