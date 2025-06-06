@@ -18,7 +18,6 @@ export class ApiUsersService {
 		return this.http.get<IResponseUser[]>(API_ROUTE.ALL_USERS)
 	}
 
-
 	logout() {
 		return this.http.post(API_ROUTE.LOGOUT, {}, { withCredentials: true })
 	}

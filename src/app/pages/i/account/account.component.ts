@@ -23,7 +23,7 @@ export class AccountPageData implements OnInit {
 	ngOnInit(): void {
 		this.apiUsersService.me().subscribe({
 			next: data => this.user = data,
-			error: () => this.router.navigate([WEB_ROUTE.LOGIN])
+			error: () => this.router.navigate([WEB_ROUTE.AUTH])
 		})
 	}
 
@@ -31,7 +31,7 @@ export class AccountPageData implements OnInit {
 		this.apiUsersService.logout().subscribe({
 			next: () => {
 				this.user = null
-				this.router.navigate([WEB_ROUTE.LOGIN])
+				this.router.navigate([WEB_ROUTE.AUTH])
 			},
 		})
 	}

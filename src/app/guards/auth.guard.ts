@@ -1,28 +1,27 @@
 import { inject } from '@angular/core'
-import { Router } from '@angular/router'
-import { catchError, map, of } from 'rxjs'
+import { CanActivateFn, Router } from '@angular/router'
+import { map } from 'rxjs'
 import { AuthService } from '../service/auth.service'
+import { WEB_ROUTE } from '../static/global.variables'
+
 
 /**
- * Guard для проверки на авторизованность пользователя. Делает запрос на сервер
- * @returns Возвращает булевое значение, если авторизован, то: True, а в ином случае False
+ * Гвард для защиты маршрутов, требующих авторизации.
+ * Проверяет, авторизован ли пользователь.
+ * Если авторизован, разрешает доступ к маршруту.
+ * Если не авторизован, перенаправляет на страницу авторизации.
+ * Проверка проводится с помощью сервиса AuthService и метода checkAuth().
+ * @returns {boolean | UrlTree} - Возвращает true, если пользователь авторизован, или UrlTree для перенаправления на страницу авторизации.
  */
-export const authGuard = () => {
+export const authGuard: CanActivateFn = (route, state) => {
 	const authService = inject(AuthService)
 	const router = inject(Router)
 
 	return authService.checkAuth()
 		.pipe(
-			map(isAuthenticated => {
-				if (!isAuthenticated) {
-					router.navigate(['/auth'])
-					return false
-				}
-				return true
-			}),
-			catchError(() => {
-				router.navigate(['/auth'])
-				return of(false)
+			map(isAuth => {
+				if (isAuth) return true
+				else return router.createUrlTree([WEB_ROUTE.AUTH])
 			})
 		)
 }

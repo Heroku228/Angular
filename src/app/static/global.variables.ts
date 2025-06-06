@@ -11,8 +11,7 @@ export const API_ROUTE = {
 
 
 export const WEB_ROUTE = {
-	LOGIN: 'auth',
-	REGISTER: 'auth',
+	AUTH: 'auth',
 	ME: 'me',
 	ALL_USERS: '/users',
 	HOME: '/'
