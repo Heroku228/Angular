@@ -32,10 +32,10 @@ export class AuthComponent {
 	}
 
 	register(form: NgForm): void {
-		if (!this.selectedFile) {
-			console.error('Файл не выбран')
-			return
-		}
+		// if (!this.selectedFile) {
+		// 	console.error('Файл не выбран')
+		// 	return
+		// }
 
 		const payload: TRegisterPayload = {
 			username: form.value.username,

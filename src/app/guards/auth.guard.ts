@@ -1,8 +1,8 @@
 import { inject } from '@angular/core'
 import { CanActivateFn, Router } from '@angular/router'
 import { map } from 'rxjs'
-import { AuthService } from '../service/auth.service'
 import { WEB_ROUTE } from '../static/global.variables'
+import { ApiAuthService } from '../api/api-auth.service'
 
 
 /**
@@ -14,7 +14,7 @@ import { WEB_ROUTE } from '../static/global.variables'
  * @returns {boolean | UrlTree} - Возвращает true, если пользователь авторизован, или UrlTree для перенаправления на страницу авторизации.
  */
 export const authGuard: CanActivateFn = (route, state) => {
-	const authService = inject(AuthService)
+	const authService = inject(ApiAuthService)
 	const router = inject(Router)
 
 	return authService.checkAuth()

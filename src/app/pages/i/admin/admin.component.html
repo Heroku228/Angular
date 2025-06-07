@@ -4,31 +4,39 @@
       type="text"
       name="username"
       id="username"
+      [(ngModel)]="username"
       placeholder="Введите имя пользователя"
     />
     <input
       type="text"
       name="reason"
       id="reason"
+      [(ngModel)]="reason"
       placeholder="Введите причину блокировки"
     />
     <input
       type="text"
       name="duration"
       id="duration"
+      [(ngModel)]="duration"
       placeholder="Введите срок блокировки (в днях)"
     />
-    <button type="submit">Заблокировать пользователя</button>
+    <button [disabled]="isButtonDisabled" (click)="banUser()" type="submit">
+      Заблокировать пользователя
+    </button>
   </div>
 
   <div>
     <input
       type="text"
       name="username"
+      [(ngModel)]="username"
       id="username"
       placeholder="Введите имя пользователя"
     />
-    <button type="submit">Разблокировать пользователя</button>
+    <button (click)="unbanUser()" type="submit">
+      Разблокировать пользователя
+    </button>
   </div>
 
   <div>
@@ -62,7 +70,7 @@
   </div>
 
   <div>
-    <button (click)="delteAllUsers()" type="submit">
+    <button (click)="deleteAllUsers()" type="submit">
       Удалить всех пользователей
     </button>
   </div>

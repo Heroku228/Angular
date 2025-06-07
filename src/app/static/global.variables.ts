@@ -8,6 +8,14 @@ export const API_ROUTE = {
 	LOGOUT: `${BASE_API_URL}/auth/logout`,
 	CHECK_AUTH: `${BASE_API_URL}/auth/check-auth`,
 	DELETE_ALL_USERS: `${BASE_API_URL}/admin/delete-all-users`,
+	BAN_USER: `${BASE_API_URL}/admin/ban-user`,
+	UNBAN_USER: `${BASE_API_URL}/admin/unban-user`,
+	DELETE_USER: `${BASE_API_URL}/admin/delete-user`,
+	ADD_ADMIN_ROLE: `${BASE_API_URL}/admin/add-admin-role`,
+	DELETE_ADMIN_ROLE: `${BASE_API_URL}/admin/delete-admin-role`,
+	SHOW_USER_INFO: `${BASE_API_URL}/admin/show-user-info`,
+	CHANGE_USER_STATUS: `${BASE_API_URL}/admin/change-user-status`,
+
 } as const
 
 

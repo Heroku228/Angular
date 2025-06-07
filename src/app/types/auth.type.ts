@@ -8,5 +8,5 @@ export type TRegisterPayload = {
 	username: string,
 	email: string,
 	password: string,
-	icon: File
+	icon: File | null | undefined
 }
