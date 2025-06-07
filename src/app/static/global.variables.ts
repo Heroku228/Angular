@@ -6,7 +6,8 @@ export const API_ROUTE = {
 	ME: `${BASE_API_URL}/users/me`,
 	ALL_USERS: `${BASE_API_URL}/public/users/all-users`,
 	LOGOUT: `${BASE_API_URL}/auth/logout`,
-	CHECK_AUTH: `${BASE_API_URL}/auth/check-auth`
+	CHECK_AUTH: `${BASE_API_URL}/auth/check-auth`,
+	DELETE_ALL_USERS: `${BASE_API_URL}/admin/delete-all-users`,
 } as const
 
 

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { Component } from '@angular/core'
 import { FormsModule, NgForm } from '@angular/forms'
@@ -9,13 +10,14 @@ import { TLoginPayload, TRegisterPayload } from '../../types/auth.type'
 @Component({
 	selector: 'app-auth',
 	standalone: true,
-	imports: [HttpClientModule, FormsModule, RouterModule],
+	imports: [HttpClientModule, FormsModule, RouterModule, CommonModule],
 	templateUrl: './auth.component.html',
 })
 
 export class AuthComponent {
 
 	private selectedFile: File | null = null;
+	errorMessage: string = ''
 
 	constructor(
 		private readonly apiAuthService: ApiAuthService,
@@ -62,7 +64,10 @@ export class AuthComponent {
 				console.log('Успешная авторизация', res)
 				this.router.navigate([WEB_ROUTE.ME])
 			},
-			error: err => console.error('Ошибка авторизации', err)
+			error: err => {
+				this.errorMessage = err.error.message
+				console.error('Ошибка авторизации', err)
+			}
 		})
 	}
 }
