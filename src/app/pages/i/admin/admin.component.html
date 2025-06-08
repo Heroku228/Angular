@@ -30,7 +30,7 @@
     <input
       type="text"
       name="username"
-      [(ngModel)]="username"
+      [(ngModel)]="unbanUsername"
       id="username"
       placeholder="Введите имя пользователя"
     />
@@ -44,29 +44,10 @@
       type="text"
       name="username"
       id="username"
+      [(ngModel)]="deleteUsername"
       placeholder="Введите имя пользователя"
     />
-    <button type="submit">Удалить пользователя</button>
-  </div>
-
-  <div>
-    <input
-      type="text"
-      name="username"
-      id="username"
-      placeholder="Введите имя пользователя"
-    />
-    <button type="submit">Выдать права администратора</button>
-  </div>
-
-  <div>
-    <input
-      type="text"
-      name="username"
-      id="username"
-      placeholder="Введите имя пользователя"
-    />
-    <button type="submit">Отобрать права администратора</button>
+    <button (click)="deleteUser()" type="submit">Удалить пользователя</button>
   </div>
 
   <div>
@@ -80,19 +61,23 @@
       type="text"
       name="updateUserRole"
       id="updateUserRole"
+      [(ngModel)]="changeUserRoleUsername"
       placeholder="Введите имя пользователя"
     />
-    <select name="role" id="role">
+    <select [(ngModel)]="changeUserRoleVal" name="role" id="role">
       <option value="user">Пользователь</option>
       <option value="admin">Администратор</option>
     </select>
-    <button type="submit">Изменить роль пользователя</button>
+    <button (click)="changeUserRole()" type="submit">
+      Изменить роль пользователя
+    </button>
   </div>
 
   <div>
     <input
       type="text"
       name="username"
+      [(ngModel)]="showUserInfoUsername"
       id="username"
       placeholder="Введите имя пользователя"
     />
@@ -104,6 +89,7 @@
       type="text"
       name="updateUserStatus"
       id="updateUserStatus"
+      [(ngModel)]="changeUserStatusUsername"
       placeholder="Введите имя пользователя"
     />
     <select name="status" id="status">

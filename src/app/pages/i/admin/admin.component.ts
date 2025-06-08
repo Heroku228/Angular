@@ -24,6 +24,15 @@ export class AdminComponent {
 	duration: string = ''
 	errorMessage: string = ''
 
+	unbanUsername: string = ''
+	deleteUsername: string = ''
+	addAdminRoleUsername: string = ''
+	deleteAdminRoleUsername: string = ''
+	changeUserRoleUsername: string = ''
+	changeUserRoleVal: string = ''
+	showUserInfoUsername: string = ''
+	changeUserStatusUsername: string = ''
+
 	get isButtonDisabled(): boolean {
 		return !this.username || !this.reason || !this.duration
 	}
@@ -62,42 +71,39 @@ export class AdminComponent {
 	}
 
 	unbanUser() {
-		this.adminService.unbanUser(this.username).subscribe({
+		this.adminService.unbanUser(this.unbanUsername).subscribe({
 			next: res => console.log('unban user repsonse => ', res),
 			error: err => console.error('unban user error => ', err)
 		})
 	}
 
-	deleteUser(username: string) {
-		this.adminService.deleteUser(username).subscribe({
+	deleteUser() {
+		console.log('admin component username => ', this.deleteUsername)
+		this.adminService.deleteUser(this.deleteUsername).subscribe({
 			next: res => console.log('delte user res => ', res),
 			error: err => console.error('delette user error => ', err)
 		})
 	}
 
-	addAdminRole(username: string) {
-		this.adminService.addAdminRole(username).subscribe({
-			next: res => console.log('add admin role res => ', res),
-			error: err => console.error('add admin role error => ', err)
+	changeUserRole() {
+		this.adminService.changeUserRole(
+			this.changeUserRoleUsername,
+			this.changeUserRoleVal
+		).subscribe({
+			next: res => console.log('change user role res => ', res),
+			error: err => console.error('change user role err => ', err)
 		})
 	}
 
-	deleteAdminRole(username: string) {
-		this.adminService.deleteAdminRole(username).subscribe({
-			next: res => console.log('delete admin role res => ', res),
-			error: err => console.error('delete admin role err => ', err)
-		})
-	}
-
-	showUserInfo(username: string) {
-		this.adminService.showUserInfo(username).subscribe({
+	showUserInfo() {
+		this.adminService.showUserInfo(this.showUserInfoUsername).subscribe({
 			next: res => console.log('show iuser info res => ', res),
 			error: err => console.error('show user info err => ', err)
 		})
 	}
 
-	changeUserStatus(username: string) {
-		this.adminService.changeUserStatus(username).subscribe({
+	changeUserStatus() {
+		this.adminService.changeUserStatus(this.changeUserStatusUsername).subscribe({
 			next: res => console.log('change user status res => ', res),
 			error: err => console.error('change user status err => ', err)
 		})

@@ -1,8 +1,8 @@
 import { inject } from '@angular/core'
 import { CanActivateFn, Router } from '@angular/router'
-import { map } from 'rxjs'
-import { WEB_ROUTE } from '../static/global.variables'
+import { map, take } from 'rxjs'
 import { ApiAuthService } from '../api/api-auth.service'
+import { WEB_ROUTE } from '../static/global.variables'
 
 
 /**
@@ -22,6 +22,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 			map(isAuth => {
 				if (isAuth) return true
 				else return router.createUrlTree([WEB_ROUTE.AUTH])
-			})
+			}),
+			take(1)
 		)
 }

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router'
+import { adminGuard } from './guards/admin.guard'
 import { authGuard } from './guards/auth.guard'
 import { noAuthGuard } from './guards/noAuth.guard'
 import { ProfileCardComponent } from './pages/all-users/all-users.component'
@@ -24,6 +25,6 @@ export const routes: Routes = [
 	{
 		path: 'i/admin',
 		component: AdminComponent,
-		canActivate: [authGuard]
+		canActivate: [adminGuard, authGuard,]
 	}
 ]

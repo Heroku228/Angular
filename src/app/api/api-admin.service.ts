@@ -27,18 +27,17 @@ export class AdminService {
 	}
 
 	deleteUser(username: string) {
-		return this.httpClient.delete(API_ROUTE.DELETE_USER, {
-			body: username,
+		console.log('username => ', username)
+		return this.httpClient.delete(`${API_ROUTE.DELETE_USER}/${username}`, {
 			withCredentials: true
 		})
 	}
 
-	addAdminRole(username: string) {
-		return this.httpClient.patch(API_ROUTE.ADD_ADMIN_ROLE, username, { withCredentials: true })
-	}
-
-	deleteAdminRole(username: string) {
-		return this.httpClient.patch(API_ROUTE.DELETE_ADMIN_ROLE, username, { withCredentials: true })
+	changeUserRole(username: string, role: string) {
+		console.table({ username, role })
+		return this.httpClient.patch(`${API_ROUTE.CHANGE_USER_ROLE}`,
+			{ username, role },
+			{ withCredentials: true })
 	}
 
 	showUserInfo(username: string) {
