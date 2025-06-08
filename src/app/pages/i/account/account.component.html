@@ -1,12 +1,25 @@
 <div *ngIf="user; else loadingOrError">
   <h2>Добро пожаловать {{ user.username }}</h2>
   <p>{{ user.email }}</p>
-  <img
-    *ngIf="user.pathToUserIcon"
-    [src]="user.pathToUserIcon"
-    alt="user avatar"
-    width="200"
-  />
+
+  <div>
+    <img
+      *ngIf="user.pathToUserIcon"
+      [src]="user.pathToUserIcon || defaultIcon"
+      alt="user avatar"
+      width="200"
+      (click)="fileInput.click()"
+      style="cursor: pointer"
+    />
+
+    <input
+      type="file"
+      #fileInput
+      accept="image/*"
+      style="display: none"
+      (change)="updateUserData($event)"
+    />
+  </div>
 
   <button (click)="logout()">Logout</button>
 </div>

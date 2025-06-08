@@ -21,4 +21,10 @@ export class ApiUsersService {
 	logout() {
 		return this.http.post(API_ROUTE.LOGOUT, {}, { withCredentials: true })
 	}
+
+	updateUserData(formData: FormData) {
+		return this.http.patch(API_ROUTE.UPDATE_USER_DATA,
+			formData,
+			{ withCredentials: true })
+	}
 }

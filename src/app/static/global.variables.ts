@@ -15,6 +15,7 @@ export const API_ROUTE = {
 	CHANGE_USER_ROLE: `${BASE_API_URL}/admin/change-user-role`,
 	SHOW_USER_INFO: `${BASE_API_URL}/admin/show-user-info`,
 	CHANGE_USER_STATUS: `${BASE_API_URL}/admin/change-user-status`,
+	UPDATE_USER_DATA: `${BASE_API_URL}/users/update-user-data`
 } as const
 
 
