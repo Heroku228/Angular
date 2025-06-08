@@ -23,4 +23,8 @@ export const WEB_ROUTE = {
 	ME: 'i',
 	ALL_USERS: '/users',
 	HOME: '/'
-}
+} as const
+
+export const PUBLIC_FILES = {
+	DEFAULT_ICON: '/default/defaultIcon.jpeg'
+} as const

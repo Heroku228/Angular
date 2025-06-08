@@ -11,8 +11,8 @@
     <h3>{{ user.username }}</h3>
     <p>Email: {{ user.email }}</p>
     <img
-      *ngIf="user.pathToUserIcon"
-      [src]="user.pathToUserIcon"
+      [src]="user.pathToUserIcon || defaultIcon"
+      (error)="onImgError($event)"
       alt="user-avatar"
       width="200"
     />
